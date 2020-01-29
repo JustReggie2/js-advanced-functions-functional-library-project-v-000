@@ -48,10 +48,62 @@ const fi = (function() {
     find: function(collection, predicate) {
       for (var i = 0; i < collection.length; i++) {
         let x = predicate(collection[i])
-        if (x === collection[i]) {
+        if (x) {
           return collection[i]
-        } 
+        }
       }
+    },
+
+    size: function(collection) {
+      if (typeof collection != "undefined") {
+        const x = Object.keys(collection)
+        return x.length
+      } else {
+        return collection.length
+      }
+    },
+
+    first: function(array, n) {
+      if (n == null) {
+        return array[0];
+      } else {
+        return array.slice(0, n);
+      }
+    },
+
+    last: function(array, n) {
+      if (n == null) {
+        return array[array.length - 1]
+      } else {
+        return array.slice(Math.max(array.length - n, 0))
+      }
+    },
+
+    compact: function(array) {
+      let x = []
+      for (var i = 0; i < array.length; i++) {
+        if (array[i]) {
+          x.push(array[i])
+        }
+      }
+      return x
+    },
+
+    sortBy: function(array, callback) {
+      let x = array
+      x.sort(function(a, b) {return a - b})
+      callback(x)
+    },
+
+    filter: function(collection, predicate) {
+      const x = []
+      for (var i = 0; i < collection.length; i++) {
+        let x1 = predicate(collection[i])
+        if (x1) {
+          x.push(collection[i])
+        }
+      }
+      return x
     },
 
     functions: function(object) {
