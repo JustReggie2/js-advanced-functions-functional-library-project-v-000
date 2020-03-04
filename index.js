@@ -54,6 +54,17 @@ const fi = (function() {
       }
     },
 
+    filter: function(collection, predicate) {
+      const x = []
+      for (var i = 0; i < collection.length; i++) {
+        let x1 = predicate(collection[i])
+        if (x1) {
+          x.push(collection[i])
+        }
+      }
+      return x
+    },
+
     size: function(collection) {
       if (typeof collection != "undefined") {
         const x = Object.keys(collection)
@@ -90,21 +101,31 @@ const fi = (function() {
     },
 
     sortBy: function(array, callback) {
-      let x = array
-      x.sort(function(a, b) {return a - b})
-      callback(x)
-    },
-
-    filter: function(collection, predicate) {
-      const x = []
-      for (var i = 0; i < collection.length; i++) {
-        let x1 = predicate(collection[i])
-        if (x1) {
-          x.push(collection[i])
-        }
+      const x = [...array]
+      x.sort()
+      for (var i = 0; i < x.length; i++) {
+        callback(x[i])
       }
       return x
     },
+
+
+    keys: function(object) {
+      const x = []
+      for (const [k, v] of Object.entries(object)) {
+        x.push(k)
+      }
+      return x
+    },
+
+    values: function(object) {
+      const x = []
+      for (const [k, v] of Object.entries(object)) {
+        x.push(v)
+      }
+      return x
+    },
+
 
     functions: function(object) {
       const x = []
