@@ -49,18 +49,6 @@ const fi = (function() {
 
       },
 
-    // reduce: function(collection, callback, acc) {
-    //   let total = 0;
-    //   for (var i = 0; i < collection.length; i++) {
-    //     total = callback(acc, collection[i], collection)
-    //   }
-    //   if (!acc) {
-    //     return total
-    //   } else {
-    //     return total + acc
-    //   }
-    // },
-
     find: function(collection, predicate) {
       for (var i = 0; i < collection.length; i++) {
         let x = predicate(collection[i])
