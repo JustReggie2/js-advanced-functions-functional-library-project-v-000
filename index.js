@@ -33,17 +33,33 @@ const fi = (function() {
       return x1
     },
 
-    reduce: function(collection, callback, acc) {
-      let total = 0;
-      for (var i = 0; i < collection.length; i++) {
-        total = callback(total, collection[i], collection)
-      }
-      if (!acc) {
-        return total
+    reduce: function(collection, callback, acc = null) {
+      if (acc) {
+        for (var i = 0; i < collection.length; i++) {
+          acc = callback(acc, collection[i], collection)
+        }
+        return acc
       } else {
-        return total + acc
+        acc = collection[0]
+        for (var i = 1; i < collection.length; i++) {
+          acc = callback(acc, collection[i], collection)
+        }
+        return acc
       }
-    },
+
+      },
+
+    // reduce: function(collection, callback, acc) {
+    //   let total = 0;
+    //   for (var i = 0; i < collection.length; i++) {
+    //     total = callback(acc, collection[i], collection)
+    //   }
+    //   if (!acc) {
+    //     return total
+    //   } else {
+    //     return total + acc
+    //   }
+    // },
 
     find: function(collection, predicate) {
       for (var i = 0; i < collection.length; i++) {
@@ -108,7 +124,6 @@ const fi = (function() {
       }
       return x
     },
-
 
     keys: function(object) {
       const x = []
